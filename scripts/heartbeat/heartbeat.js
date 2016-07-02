@@ -4,11 +4,12 @@ var diskspace = require('diskspace');
 var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
-BashConf = require('bash-conf'),
-bashConf = new BashConf();
+var env = require('node-files-env');
 
 var logfile = 'heartbeat';
 var bashConfig = '../../node.config';
+
+env(__dirname + "/" + bashConfig);
 
 log4js.loadAppender('file');
 log4js.configure({
@@ -44,19 +45,13 @@ setInterval(function(){
     },
     function(arg, callback){
       var data = arg || {};
-      bashConf.read(bashConfig)
-        .then(function(nodeConfig){
-          data['name'] = nodeConfig["NODE_NAME"];
-          data['ssh_port'] = nodeConfig["SSH_PORT"];
-          var ifaceName = nodeConfig["IFACE_NAME"];
-          var iface = macaddress.networkInterfaces()[ifaceName];
-          data['mac'] = iface["mac"];
-          data['localip'] = iface["ipv4"];
-          callback(null, data);
-        })
-        .catch(function(error){
-          callback(error);
-        });
+      data['name'] =  process.env.NODE_NAME; //nodeConfig["NODE_NAME"];
+      data['ssh_port'] = process.env.SSH_PORT; //nodeConfig["SSH_PORT"];
+      var ifaceName = process.env.IFACE_NAME; //nodeConfig["IFACE_NAME"];
+      var iface = macaddress.networkInterfaces()[ifaceName];
+      data['mac'] = iface["mac"];
+      data['localip'] = iface["ipv4"];
+      callback(null, data);
     }
   ], function(err, data){
     if(err){
