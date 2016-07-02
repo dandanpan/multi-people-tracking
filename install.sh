@@ -13,4 +13,4 @@ sudo apt-get -y --force-yes install nodejs nodejs-legacy npm vim
 sudo npm install -g pm2
 
 # run the deployment scripts
-sh ./deploy.sh
+/bin/bash ./deploy.sh
