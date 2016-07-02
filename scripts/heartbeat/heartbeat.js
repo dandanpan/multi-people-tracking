@@ -78,4 +78,4 @@ setInterval(function(){
       logger.error("Failed to publish to Firebase");
     });
   });
-}, 5000);
+}, 15000);
