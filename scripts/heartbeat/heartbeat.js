@@ -67,7 +67,7 @@ setInterval(function(){
       return;
     }
     data['timestamp'] = new Date().toString();
-    firebase.database().ref('testData/test1').update(data).then(function(){
+    firebase.database().ref('nodes/' + data["name"]).update(data).then(function(){
       logger.info("Published data: " + JSON.stringify(data));
     }).catch(function(){
       logger.error("Failed to publish to Firebase");
