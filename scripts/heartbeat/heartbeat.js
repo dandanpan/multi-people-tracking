@@ -54,7 +54,7 @@ setInterval(function(){
       bashConf.read(bashConfig)
         .then(function(nodeConfig){
           data['name'] = nodeConfig["NODE_NAME"];
-          data['ssh_port'] = nodeConfig["SSH_PORT_NAME"];
+          data['ssh_port'] = nodeConfig["SSH_PORT"];
           callback(null, data);
         })
         .catch(function(error){
