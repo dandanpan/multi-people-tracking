@@ -3,6 +3,9 @@
 # Installer script
 # Let's start by installing dependencies
 
+# start from clean repository
+git checkout .
+
 sudo apt-get -y --force-yes install nodejs nodejs-legacy npm
 sudo npm install -g pm2
 
@@ -31,6 +34,37 @@ echo "NODE_NAME=$NODE_NAME
 SSH_PORT=$SSH_PORT
 IFACE_NAME=$IFACE_NAME" > './node.config'
 
+
+# install wifi configuration
+# copy interfaces file
+sudo cp "scripts/wificonf/interfaces" "/etc/network/interfaces"
+
+# update and write wpa_supplicant
+echo "Enter andrew id for CMU-SECURE:"
+read ANDREW_ID
+
+echo "Enter andrew password for CMU-SECURE"
+read ANDREW_PASS
+
+# append CMU-SECURE block to wpa_supplicant
+echo "network={
+    ssid=\"CMU-SECURE\"
+    scan_ssid=1
+    key_mgmt=WPA-EAP
+    pairwise=CCMP TKIP
+    group=CCMP TKIP
+    eap=PEAP
+    identity=\"$ANDREW_ID\"
+    password=\"$ANDREW_PASS\"
+    phase1=\"peapver=0\"
+    phase2=\"MSCHAPV2\"
+}" >> "scripts/wificonf/wpa_supplicant.conf"
+
+# copy wpa_supplicant to appropriate folder
+sudo cp "scripts/wificonf/wpa_supplicant.conf"  "/etc/wpa_supplicant/wpa_supplicant.conf"
+
+# restart wlan0 interface
+sudo ifdown wlan0 && sudo ifup wlan0;
 
 # go into scripts module and initialize
 cd scripts/heartbeat;
