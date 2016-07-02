@@ -3,8 +3,8 @@
 # Installer script
 # Let's start by installing dependencies
 
-#apt-get -y --force-yes install nodejs nodejs-legacy
-#apt-get -y --force-yes install npm
+sudo apt-get -y --force-yes install nodejs nodejs-legacy npm
+sudo npm install -g pm2
 
 # Let's gather all the required info
 echo "Enter node name:"
@@ -23,3 +23,15 @@ fi
 
 echo "NODE_NAME=$NODE_NAME
 SSH_PORT=$SSH_PORT" > './node.config'
+
+
+# go into scripts module and initialize
+cd scripts/heartbeat;
+npm install
+cd -;
+# start service (force restart)
+pm2 start scripts/heartbeat/heartbeat.js -f
+
+
+# start pm2 on boot with user pi
+sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
