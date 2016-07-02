@@ -67,7 +67,7 @@ cd scripts/heartbeat;
 npm install
 # start service (force restart)
 # need to run inside this folder so the relative path to logs will work
-pm2 start heartbeat.js -f
+sudo pm2 start heartbeat.js -f
 cd -;
 
 # start pm2 on boot with user pi
