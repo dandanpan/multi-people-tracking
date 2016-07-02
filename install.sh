@@ -21,8 +21,15 @@ if [[ -z $SSH_PORT ]]; then
   SSH_PORT=`$RANDOM + 9000`
 fi
 
+echo "Enter interface name:"
+read IFACE_NAME
+if [[ -z IFACE_NAME ]]; then
+  IFACE_NAME="wlan0"
+fi
+
 echo "NODE_NAME=$NODE_NAME
-SSH_PORT=$SSH_PORT" > './node.config'
+SSH_PORT=$SSH_PORT
+IFACE_NAME=$IFACE_NAME" > './node.config'
 
 
 # go into scripts module and initialize

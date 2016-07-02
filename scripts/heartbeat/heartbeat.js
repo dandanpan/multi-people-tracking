@@ -44,17 +44,14 @@ setInterval(function(){
     },
     function(arg, callback){
       var data = arg || {};
-      var iface = macaddress.networkInterfaces()["en0"];
-      data['mac'] = iface["mac"];
-      data['localip'] = iface["ipv4"];
-      callback(null, data);
-    },
-    function(arg, callback){
-      var data = arg || {};
       bashConf.read(bashConfig)
         .then(function(nodeConfig){
           data['name'] = nodeConfig["NODE_NAME"];
           data['ssh_port'] = nodeConfig["SSH_PORT"];
+          var ifaceName = nodeConfig["IFACE_NAME"];
+          var iface = macaddress.networkInterfaces()[ifaceName];
+          data['mac'] = iface["mac"];
+          data['localip'] = iface["ipv4"];
           callback(null, data);
         })
         .catch(function(error){
