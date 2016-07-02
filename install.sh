@@ -72,10 +72,21 @@ sudo ifdown wlan0 && sudo ifup wlan0;
 # go into scripts module and initialize
 cd scripts/heartbeat;
 npm install
-cd -;
 # start service (force restart)
-pm2 start scripts/heartbeat/heartbeat.js -f
-
+# need to run inside this folder so the relative path to logs will work
+pm2 start heartbeat.js -f
+cd -;
 
 # start pm2 on boot with user pi
 sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
+
+
+# prepare anchor script
+cd scripts/pyanchor-read
+chmod 755 launcher.sh
+crontab cron-file.txt
+crontab -l
+cd -;
+
+# reboot pi
+sudo reboot
