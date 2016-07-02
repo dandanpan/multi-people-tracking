@@ -7,4 +7,7 @@ cd /home/pi/Footstep/config/scripts/pyanchor-read
 sleep 10
 # make sure script runs in the background
 sudo python readcom_anchor.py &
+
+# force restart pm2 on launch
+sudo pm2 resurrect
 cd -;
