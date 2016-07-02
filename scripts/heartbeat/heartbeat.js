@@ -49,7 +49,7 @@ setInterval(function(){
       data['ssh_port'] = process.env.SSH_PORT; //nodeConfig["SSH_PORT"];
       var ifaceName = process.env.IFACE_NAME; //nodeConfig["IFACE_NAME"];
       var iface = macaddress.networkInterfaces()[ifaceName];
-      data['mac'] = iface["mac"];
+      //data['mac'] = iface["mac"];
       data['localip'] = iface["ipv4"];
       callback(null, data);
     }
