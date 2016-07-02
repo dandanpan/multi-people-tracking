@@ -60,7 +60,7 @@ sudo ifdown wlan0 && sudo ifup wlan0;
 # pm2 initialization
 
 # stop and delete all previous processes
-pm2 delete all
+sudo pm2 delete all
 
 # go into scripts module and initialize
 cd scripts/heartbeat;
@@ -71,10 +71,10 @@ pm2 start heartbeat.js -f
 cd -;
 
 # start pm2 on boot with user pi
-sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi
+sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
 
 # save pm2 configuration
-pm2 save;
+sudo pm2 save;
 
 # prepare anchor script
 cd scripts/pyanchor-read
