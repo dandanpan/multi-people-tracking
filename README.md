@@ -4,10 +4,10 @@ A set of scripts for deploying services on Raspberry Pis for the Footstep WSN.
 
 ## Installation
 
-1. Expand SD file system. ```sudo raspi-config``` and select `Expand Filesystem`. It'll run, select `Finish` and then reboot later.
+1. Expand SD file system. ```sudo raspi-config``` and select `Expand Filesystem`. It'll run, select `Finish` and then reboot now.
 2. Create the Footstep project directory: ```mkdir -p Footstep/config```
 3. Change to that directory: ```cd Footstep/config```
-4. Clone this repository: ```git clone https://github.com/ccceeefff/footstep-wsn-pi.git``` (Enter github username and password)
+4. Clone this repository: ```git clone https://github.com/ccceeefff/footstep-wsn-pi.git .``` (Enter github username and password)
 5. Run ```/bin/bash install.sh```
 
 ## Repository Structure
