@@ -4,7 +4,7 @@ A set of scripts for deploying services on Raspberry Pis for the Footstep WSN.
 
 ## Installation
 
-1. Run ```sudo install.sh```
+1. Run ```sh install.sh```
 
 ## Repository Structure
 

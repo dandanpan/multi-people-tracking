@@ -6,6 +6,9 @@
 # start from clean repository
 git checkout .
 
+# make sure packages are upto date
+sudo apt-get update
+
 sudo apt-get -y --force-yes install nodejs nodejs-legacy npm
 sudo npm install -g pm2
 
