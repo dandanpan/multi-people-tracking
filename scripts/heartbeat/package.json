@@ -4,5 +4,11 @@
   "description": "Reports device status every X seconds to a server.",
   "main": "heartbeat.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "scripts": {
+    "start" : "node heartbeat.js"
+  },
+  "dependencies": {
+    "firebase": "^3.1.0"
+  }
 }
