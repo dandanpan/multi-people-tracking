@@ -3,8 +3,13 @@ var macaddress = require('macaddress');
 var diskspace = require('diskspace');
 var async = require('async');
 var log4js = require('log4js');
+var fs = require('fs');
+BashConf = require('bash-conf'),
+bashConf = new BashConf();
 
 var logfile = 'heartbeat';
+var bashConfig = '../../node.config';
+
 log4js.loadAppender('file');
 log4js.configure({
   appenders: [
@@ -46,15 +51,21 @@ setInterval(function(){
     },
     function(arg, callback){
       var data = arg || {};
-      callback(null, data);
+      bashConf.read(bashConfig)
+        .then(function(nodeConfig){
+          data['name'] = nodeConfig["NODE_NAME"];
+          data['ssh_port'] = nodeConfig["SSH_PORT_NAME"];
+          callback(null, data);
+        })
+        .catch(function(error){
+          callback(error);
+        });
     }
   ], function(err, data){
-
     if(err){
       logger.error(err);
       return;
     }
-
     data['timestamp'] = new Date().toString();
     firebase.database().ref('testData/test1').update(data).then(function(){
       logger.info("Published data: " + JSON.stringify(data));
