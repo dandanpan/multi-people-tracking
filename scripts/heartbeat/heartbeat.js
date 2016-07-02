@@ -5,6 +5,7 @@ var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
 var env = require('node-files-env');
+var free = require('freem');
 
 var logfile = 'heartbeat';
 var bashConfig = '../../node.config';
@@ -41,6 +42,18 @@ setInterval(function(){
         data['disk_free'] = free / (1024 * 1024);
         data['disk_total'] = total / (1024 * 1024);
         callback(err, data);
+      });
+    },
+    function(arg, callback){
+      var data = arg || {};
+      free(function(err, list){
+        if(err){
+          callback(err);
+        } else {
+            var mem = list[0];
+            data['mem'] = mem;
+            callback(null, data);
+        }
       });
     },
     function(arg, callback){

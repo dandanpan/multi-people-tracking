@@ -13,6 +13,7 @@
     "bash-conf": "0.0.2",
     "diskspace": "^1.0.3",
     "firebase": "^3.1.0",
+    "freem": "^1.0.0",
     "log4js": "^0.6.37",
     "macaddress": "^0.2.8",
     "node-files-env": "^0.1.5"
