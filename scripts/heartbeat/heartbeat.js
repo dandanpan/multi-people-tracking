@@ -2,14 +2,25 @@ var firebase = require('firebase');
 var macaddress = require('macaddress');
 var diskspace = require('diskspace');
 var async = require('async');
+var log4js = require('log4js');
+
+var logfile = 'heartbeat';
+log4js.loadAppender('file');
+log4js.configure({
+  appenders: [
+    { type: 'console' },
+    { type: 'file', filename: '../../logs/' + logfile + '.log', category: logfile }
+  ]
+});
+
+var logger = log4js.getLogger(logfile);
+logger.setLevel("DEBUG");
 
 var firebaseConfig = {
     databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
 };
 
 firebase.initializeApp(firebaseConfig);
-
-var count = 0;
 
 setInterval(function(){
   async.waterfall([
@@ -33,12 +44,17 @@ setInterval(function(){
       callback(null, data);
     }
   ], function(err, data){
+
+    if(err){
+      logger.error(err);
+      return;
+    }
+
     data['timestamp'] = new Date().toString();
     firebase.database().ref('testData/test1').update(data).then(function(){
-      // TODO: fix logging!!
-      console.log("done publishing");
+      logger.info("Published data: " + JSON.stringify(data));
     }).catch(function(){
-      console.log("failed to publish");
+      logger.error("Failed to publish to Firebase");
     });
   });
 }, 5000);
