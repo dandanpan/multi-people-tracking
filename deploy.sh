@@ -71,7 +71,7 @@ sudo pm2 start heartbeat.js -f
 cd -;
 
 # start pm2 on boot with user pi
-sudo env PATH=$PATH:/usr/local/bin pm2 startup -u pi
+sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi
 
 # save pm2 configuration
 sudo pm2 save;
