@@ -5,5 +5,6 @@
 cd /home/pi/Footstep/config/scripts/pyanchor-read
 # sleep for 10 seconds to wait for arduino to properly power on
 sleep 10
-sudo python readcom_anchor.py
+# make sure script runs in the background
+sudo python readcom_anchor.py &
 cd -;
