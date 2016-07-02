@@ -9,7 +9,12 @@ log4js.loadAppender('file');
 log4js.configure({
   appenders: [
     { type: 'console' },
-    { type: 'file', filename: '../../logs/' + logfile + '.log', category: logfile }
+    { type: 'file',
+      filename: '../../logs/' + logfile + '.log',
+      category: logfile,
+      maxLogSize: 20480,
+      backups: 10
+    }
   ]
 });
 
