@@ -87,6 +87,7 @@ cd -;
 export SSH_PORT=$SSH_PORT
 export MIDDLEMAN_USERNAME="ubuntu"
 export MIDDLEMAN_SERVER="ec2-52-41-99-122.us-west-2.compute.amazonaws.com"
+/bin/bash "scripts/reverse-ssh/setup_reverse_ssh.sh"
 
 # reboot pi
 sudo reboot
