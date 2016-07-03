@@ -10,7 +10,7 @@ git checkout .
 sudo apt-get update
 
 sudo apt-get -y --force-yes install nodejs nodejs-legacy npm vim
-sudo apt-get install openssh-server autossh
+sudo apt-get -y --force-yes install openssh-server autossh
 sudo npm install -g pm2
 
 # run the deployment scripts
