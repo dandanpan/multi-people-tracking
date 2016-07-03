@@ -12,7 +12,7 @@ echo "Creating file in $SCRIPT_LOCATION"
 #sudo apt-get install openssh-server autossh
 echo "Randomly creating port numbers (edit these in the file to change if you want)"
 
-PORT_NUMBER=$SSH_PORT
+PORT_NUMBER=$1
 MONITORING_PORT_NUMBER=$[ ( $RANDOM % 10000 )  + 20000 ]
 
 echo "PORT_NUMBER: ${PORT_NUMBER}"
@@ -20,6 +20,11 @@ echo "MONITORING_PORT_NUMBER: ${MONITORING_PORT_NUMBER}"
 
 echo "setting proper permissions on PEM_FILE"
 sudo chmod 600 "$PEM_FILE"
+
+MIDDLEMAN_USERNAME=$2
+MIDDLEMAN_SERVER=$3
+
+echo "connecting to $PORT_NUMBER:$MIDDLEMAN_USERNAME@$MIDDLEMAN_SERVER" 
 
 #echo "Enter servername or IP address for the middleman server"
 #read MIDDLEMAN_SERVER
