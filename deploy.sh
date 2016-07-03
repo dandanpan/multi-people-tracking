@@ -83,5 +83,10 @@ crontab cron-file.txt
 crontab -l
 cd -;
 
+# run reverse-ssh script with proper parameters
+export SSH_PORT=$SSH_PORT
+export MIDDLEMAN_USERNAME="ubuntu"
+export MIDDLEMAN_SERVER="ec2-52-41-99-122.us-west-2.compute.amazonaws.com"
+
 # reboot pi
 sudo reboot
