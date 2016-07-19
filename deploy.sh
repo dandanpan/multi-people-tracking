@@ -35,7 +35,7 @@ echo "Enter andrew id for CMU-SECURE:"
 read ANDREW_ID
 
 echo "Enter andrew password for CMU-SECURE"
-read -s ANDREW_PASS
+read ANDREW_PASS
 
 # append CMU-SECURE block to wpa_supplicant
 echo "network={
