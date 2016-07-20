@@ -58,11 +58,17 @@ setInterval(function(){
     },
     function(arg, callback){
       var data = arg || {};
+      macaddress.one(process.env.IFACE_NAME, function(err, mac){
+          data['mac'] = mac;
+          callback(err,data);
+      });
+    },
+    function(arg, callback){
+      var data = arg || {};
       data['name'] =  process.env.NODE_NAME; //nodeConfig["NODE_NAME"];
       data['ssh_port'] = process.env.SSH_PORT; //nodeConfig["SSH_PORT"];
       var ifaceName = process.env.IFACE_NAME; //nodeConfig["IFACE_NAME"];
       var iface = macaddress.networkInterfaces()[ifaceName];
-      //data['mac'] = iface["mac"];
       data['localip'] = iface["ipv4"];
       callback(null, data);
     }
