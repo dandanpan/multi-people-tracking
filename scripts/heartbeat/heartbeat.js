@@ -29,7 +29,7 @@ var logger = log4js.getLogger(logfile);
 logger.setLevel("DEBUG");
 
 var firebaseConfig = {
-    databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
+    databaseURL: 'https://footstep-wsn-cmusv.firebaseio.com/'
 };
 
 firebase.initializeApp(firebaseConfig);
