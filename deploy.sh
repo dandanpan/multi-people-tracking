@@ -84,7 +84,7 @@ crontab -l
 cd -;
 
 # run reverse-ssh script with proper parameters
-sudo /bin/bash "scripts/reverse-ssh/setup_reverse_ssh.sh" $SSH_PORT "ubuntu" "ec2-52-41-99-122.us-west-2.compute.amazonaws.com"
+# sudo /bin/bash "scripts/reverse-ssh/setup_reverse_ssh.sh" $SSH_PORT "ubuntu" "ec2-52-41-99-122.us-west-2.compute.amazonaws.com"
 
 # reboot pi
 sudo reboot
