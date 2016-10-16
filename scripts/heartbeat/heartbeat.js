@@ -28,8 +28,10 @@ log4js.configure({
 var logger = log4js.getLogger(logfile);
 logger.setLevel("DEBUG");
 
+// pittsburgh nodes use this -- databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
+// cmusv nodes use this -- databaseURL: 'https://footstep-wsn-cmusv.firebaseio.com/'
 var firebaseConfig = {
-    databaseURL: 'https://footstep-wsn-cmusv.firebaseio.com/'
+    databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
 };
 
 firebase.initializeApp(firebaseConfig);
