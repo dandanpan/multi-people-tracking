@@ -31,7 +31,7 @@ logger.setLevel("DEBUG");
 // pittsburgh nodes use this -- databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
 // cmusv nodes use this -- databaseURL: 'https://footstep-wsn-cmusv.firebaseio.com/'
 var firebaseConfig = {
-    databaseURL: 'https://footstep-wsn-prod.firebaseio.com/'
+    databaseURL: 'https://footstep-wsn-cmusv.firebaseio.com/'
 };
 
 firebase.initializeApp(firebaseConfig);
