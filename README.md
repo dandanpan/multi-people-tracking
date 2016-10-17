@@ -10,6 +10,15 @@ A set of scripts for deploying services on Raspberry Pis for the Footstep WSN.
 4. Clone this repository: ```git clone https://github.com/ccceeefff/footstep-wsn-pi.git .``` (Enter github username and password)
 5. Run ```/bin/bash install.sh```
 
+## Updating
+
+Use this to update existing nodes.
+
+1. ssh into the raspberry pi
+2. Change to the footstep directory: ```cd Footstep/config```
+3. Pull the latest code from git: ```git pull```. Enter the username and password when asked.
+4. Run the deploy script ```/bin/bash deploy.sh```
+
 ## Repository Structure
 
 * **scripts/** - set of scripts for services to run
